@@ -11,7 +11,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletResponse;
 
 import com.demoDigital.demo.auth.JwtTokenUtil;
-import com.demoDigital.demo.repository.PersonalInfoRepository;
+import com.demoDigital.demo.repository.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -22,7 +22,7 @@ public class CORSFilter implements Filter {
 	@Autowired
 	JwtTokenUtil jwtTokenUtil;
 	@Autowired
-	PersonalInfoRepository personalRepo;
+	UserRepository personalRepo;
 
 	public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain)
 			throws IOException, ServletException {

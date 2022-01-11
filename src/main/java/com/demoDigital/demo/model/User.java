@@ -1,30 +1,30 @@
 package com.demoDigital.demo.model;
 
-import lombok.*;
-
 import java.time.LocalDate;
-import java.util.List;
-import javax.persistence.*;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import com.demoDigital.demo.customModel.Gender;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import java.util.ArrayList;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
-@Table(name = "personal_info")
+@Table(name = "user")
 @Getter
 @Setter
 @NoArgsConstructor
-public class PersonalInfo {
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToMany(mappedBy = "personalInfo", cascade = CascadeType.ALL)
-    @JsonIgnore
-    private List<DigitalCV> digitalcvs = new ArrayList<>();
-
     @Column(name = "email", unique = true)
     private String email;
 
@@ -32,18 +32,17 @@ public class PersonalInfo {
     private String address;
     private Gender gender;
     private LocalDate dob;
-    private String linkedin;
-    private String careerObjective;
     private String username;
     @JsonIgnore
     private String password;
 
-    public List<DigitalCV> getDigitalcvs() {
-        return this.digitalcvs;
-    }
-
-    public void setDigitalcvs(List<DigitalCV> digitalcvs) {
-        this.digitalcvs = digitalcvs;
+    public User updateModel(User curItem, User item) {
+        curItem.setPhone(item.getPhone());
+        curItem.setAddress(item.getAddress());
+        curItem.setGender(item.getGender());
+        curItem.setDob(item.getDob());
+        curItem.setUsername(item.getUsername());
+        return curItem;
     }
 
     public Long getId() {
@@ -94,22 +93,6 @@ public class PersonalInfo {
         this.dob = dob;
     }
 
-    public String getLinkedin() {
-        return this.linkedin;
-    }
-
-    public void setLinkedin(String linkedin) {
-        this.linkedin = linkedin;
-    }
-
-    public String getCareerObjective() {
-        return this.careerObjective;
-    }
-
-    public void setCareerObjective(String careerObjective) {
-        this.careerObjective = careerObjective;
-    }
-
     public String getUsername() {
         return this.username;
     }
@@ -126,14 +109,4 @@ public class PersonalInfo {
         this.password = password;
     }
 
-    public PersonalInfo updateModel(PersonalInfo curItem, PersonalInfo item) {
-        curItem.setPhone(item.getPhone());
-        curItem.setAddress(item.getAddress());
-        curItem.setGender(item.getGender());
-        curItem.setDob(item.getDob());
-        curItem.setLinkedin(item.getLinkedin());
-        curItem.setCareerObjective(item.getCareerObjective());
-        curItem.setUsername(item.getUsername());
-        return curItem;
-    }
 }

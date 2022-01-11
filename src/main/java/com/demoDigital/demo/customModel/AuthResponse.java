@@ -2,19 +2,19 @@ package com.demoDigital.demo.customModel;
 
 import lombok.Data;
 
-import com.demoDigital.demo.model.PersonalInfo;
+import com.demoDigital.demo.model.User;
 
 @Data
 public class AuthResponse {
 
-    private PersonalInfo user;
+    private User user;
     private String token;
 
-    public PersonalInfo getUser() {
+    public User getUser() {
         return this.user;
     }
 
-    public void setUser(PersonalInfo user) {
+    public void setUser(User user) {
         this.user = user;
     }
 

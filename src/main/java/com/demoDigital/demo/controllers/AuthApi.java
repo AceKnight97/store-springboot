@@ -7,9 +7,9 @@ import com.demoDigital.demo.customModel.AuthRequest;
 import com.demoDigital.demo.customModel.AuthResponse;
 import com.demoDigital.demo.customModel.CreateUserRequest;
 import com.demoDigital.demo.model.MutationResponse;
-import com.demoDigital.demo.model.PersonalInfo;
-import com.demoDigital.demo.repository.PersonalInfoRepository;
-import com.demoDigital.demo.services.PersonalInfoService;
+import com.demoDigital.demo.model.User;
+import com.demoDigital.demo.repository.UserRepository;
+import com.demoDigital.demo.services.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -32,10 +32,10 @@ public class AuthApi {
     JwtTokenUtil jwtTokenUtil;
 
     @Autowired
-    PersonalInfoRepository personalRepo;
+    UserRepository personalRepo;
 
     @Autowired
-    PersonalInfoService personalInfoService;
+    UserService personalInfoService;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -51,7 +51,7 @@ public class AuthApi {
         // System.out.println("email: " + email);
         // System.out.println("password: " + password);
 
-        PersonalInfo user = personalRepo.findByEmail(email);
+        User user = personalRepo.findByEmail(email);
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         encoder.matches(password, user.getPassword());
 
@@ -71,7 +71,7 @@ public class AuthApi {
     @PostMapping("register")
     public MutationResponse register(@RequestBody @Valid CreateUserRequest request) {
         MutationResponse res = new MutationResponse();
-        PersonalInfo newUser = personalInfoService.createUser(request);
+        User newUser = personalInfoService.createUser(request);
 
         if (newUser == null) {
             res.isSuccess = false;

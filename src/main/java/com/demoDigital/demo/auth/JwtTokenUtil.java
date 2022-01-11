@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
-import com.demoDigital.demo.model.PersonalInfo;
+import com.demoDigital.demo.model.User;
 
 import static java.lang.String.format;
 
@@ -26,7 +26,7 @@ public class JwtTokenUtil {
 
     private Logger logger;
 
-    public String generateAccessToken(PersonalInfo user) {
+    public String generateAccessToken(User user) {
         return Jwts.builder()
                 .setSubject(format("%s,%s", user.getId(), user.getEmail()))
                 .setIssuer(jwtIssuer)
