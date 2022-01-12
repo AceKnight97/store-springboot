@@ -35,14 +35,17 @@ public class UserService {
             System.out.println("newUser already exist!");
             return null;
         }
-        // System.out.println("newUser: " + user.getEmail() + " " + user.getUsername() +
-        // " " + user.getPassword());
         User existUser = new User();
         existUser.setUsername(user.getUsername());
         existUser.setEmail(email);
+        existUser.setAddress(user.getAddress());
+        existUser.setPhone(user.getPhone());
+        existUser.setNotes(user.getNotes());
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         existUser.setPassword(encoder.encode(user.getPassword()));
         return userRepo.save(existUser);
+        // System.out.println("newUser: " + user.getEmail() + " " + user.getUsername() +
+        // " " + user.getPassword());
     }
 
 }

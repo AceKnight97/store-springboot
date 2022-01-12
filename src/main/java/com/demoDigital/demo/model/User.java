@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import com.demoDigital.demo.customModel.Gender;
+import com.demoDigital.demo.customModel.Roles;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Getter;
@@ -33,6 +34,9 @@ public class User {
     private Gender gender;
     private LocalDate dob;
     private String username;
+    private Roles role;
+    private String notes;
+
     @JsonIgnore
     private String password;
 
@@ -107,6 +111,22 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Roles getRole() {
+        return this.role;
+    }
+
+    public void setRole(Roles role) {
+        this.role = role;
+    }
+
+    public String getNotes() {
+        return this.notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
     }
 
 }

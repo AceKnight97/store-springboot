@@ -1,9 +1,7 @@
 package com.demoDigital.demo.controllers;
 
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -14,16 +12,14 @@ public class HomeController {
     return "index";
   }
 
-  // @RequestMapping(value = "/masterdata", method = RequestMethod.GET, produces =
-  // MediaType.APPLICATION_JSON_VALUE)
   @RequestMapping("/masterdata")
   public String masterdata() {
-    return "skill_compentence.json";
+    return "master_data.json";
   }
 
-  @RequestMapping("/hello")
+  @RequestMapping("/hellotriet")
   @ResponseBody
   public String hello() {
-    return "Hello Triet";
+    return "Hello Triet!";
   }
 }

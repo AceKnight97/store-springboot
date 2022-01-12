@@ -24,7 +24,7 @@ import lombok.RequiredArgsConstructor;
 
 @Tag(name = "Authentication")
 @RestController
-@RequestMapping(path = "api/public")
+@RequestMapping(path = "/api/public")
 @RequiredArgsConstructor
 public class AuthApi {
 
@@ -32,17 +32,17 @@ public class AuthApi {
     JwtTokenUtil jwtTokenUtil;
 
     @Autowired
-    UserRepository personalRepo;
+    UserRepository userRepo;
 
     @Autowired
-    UserService personalInfoService;
+    UserService userService;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
-    @PostMapping("login")
+    @PostMapping("/login")
     public MutationResponse login(@RequestBody @Valid AuthRequest request) {
         MutationResponse res = new MutationResponse();
         AuthResponse auth = new AuthResponse();
@@ -51,7 +51,12 @@ public class AuthApi {
         // System.out.println("email: " + email);
         // System.out.println("password: " + password);
 
-        User user = personalRepo.findByEmail(email);
+        User user = userRepo.findByEmail(email);
+        if (user == null) {
+            System.out.println("User no exist!");
+            res.isSuccess = false;
+            return res;
+        }
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         encoder.matches(password, user.getPassword());
 
@@ -68,10 +73,10 @@ public class AuthApi {
         return res;
     }
 
-    @PostMapping("register")
+    @PostMapping("/register")
     public MutationResponse register(@RequestBody @Valid CreateUserRequest request) {
         MutationResponse res = new MutationResponse();
-        User newUser = personalInfoService.createUser(request);
+        User newUser = userService.createUser(request);
 
         if (newUser == null) {
             res.isSuccess = false;

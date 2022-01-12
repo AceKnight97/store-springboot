@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 
-  @Query(value = "SELECT * FROM personal_info info where info.email LIKE :email", nativeQuery = true)
+  @Query(value = "SELECT * FROM user u where u.email LIKE :email", nativeQuery = true)
   User findByEmail(String email);
 
 }

@@ -12,6 +12,12 @@ public class CreateUserRequest {
     @NotBlank
     private String username;
     @NotBlank
+    private String phone;
+    @NotBlank
+    private String address;
+    @NotBlank
+    private String notes;
+    @NotBlank
     @Email
     private String email;
     @NotBlank
@@ -40,6 +46,30 @@ public class CreateUserRequest {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getPhone() {
+        return this.phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getAddress() {
+        return this.address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getNotes() {
+        return this.notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
     }
 
 }

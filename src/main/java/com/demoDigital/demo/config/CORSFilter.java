@@ -22,7 +22,7 @@ public class CORSFilter implements Filter {
 	@Autowired
 	JwtTokenUtil jwtTokenUtil;
 	@Autowired
-	UserRepository personalRepo;
+	UserRepository userRepo;
 
 	public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain)
 			throws IOException, ServletException {
