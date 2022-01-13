@@ -22,11 +22,11 @@ public class Food {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String kind;
+    private String title;
     private String name;
     private Number rating;
     private Number price;
-    private Quantity quantityType;
+    private Quantity quantityType = Quantity.WEIGHT;
     @Lob
     private String image;
 
@@ -36,14 +36,6 @@ public class Food {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getKind() {
-        return this.kind;
-    }
-
-    public void setKind(String kind) {
-        this.kind = kind;
     }
 
     public String getName() {
@@ -86,9 +78,17 @@ public class Food {
         this.image = image;
     }
 
+    public String getTitle() {
+        return this.title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
     public Food updateModel(Food oldFood, Food newFood) {
         oldFood.setImage(newFood.getImage());
-        oldFood.setKind(newFood.getKind());
+        oldFood.setTitle(newFood.getTitle());
         oldFood.setName(newFood.getName());
         oldFood.setPrice(newFood.getPrice());
         oldFood.setQuantityType(newFood.getQuantityType());

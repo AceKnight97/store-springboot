@@ -22,7 +22,7 @@ public class FoodOrder {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Number quantity;
-    private String food_id;
+    private Long food_id;
     private LocalDateTime createdAt;
     private String email;
 
@@ -42,11 +42,11 @@ public class FoodOrder {
         this.quantity = quantity;
     }
 
-    public String getFood_id() {
+    public Long getFood_id() {
         return this.food_id;
     }
 
-    public void setFood_id(String food_id) {
+    public void setFood_id(Long food_id) {
         this.food_id = food_id;
     }
 
@@ -64,6 +64,13 @@ public class FoodOrder {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public void updateModel(FoodOrder oldOrder, FoodOrder newOrder) {
+        oldOrder.setCreatedAt(LocalDateTime.now());
+        oldOrder.setEmail(newOrder.getEmail());
+        oldOrder.setFood_id(newOrder.getFood_id());
+        oldOrder.setQuantity(newOrder.getQuantity());
     }
 
 }
