@@ -65,4 +65,25 @@ public class FoodOrderService {
         }
     }
 
+    public List<FoodOrder> createAnyCustomerOrder(List<FoodOrder> receiveOrder) {
+        List<FoodOrder> listFood = new ArrayList<>();
+        try {
+            LocalDateTime current = LocalDateTime.now();
+            for (FoodOrder foodOrder : receiveOrder) {
+                Long food_id = foodOrder.getFood_id();
+                if (food_id == null) {
+                    System.out.println("Invalid value food id!");
+                    return null;
+                }
+                foodOrder.setCreatedAt(current);
+                foodOrderRepo.save(foodOrder);
+                listFood.add(foodOrder);
+            }
+            // Iterable<Food> resultId = foodRepo.findAllById(listId);
+            return listFood;
+        } catch (Exception e) {
+            // TODO: handle exception
+            return null;
+        }
+    }
 }

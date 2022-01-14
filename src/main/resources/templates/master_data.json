@@ -3,152 +3,179 @@
       {
         "title": "Seafood",
         "name": "Lobster",
-        "price": 1200000
+        "price": 1200000,
+        "rating": 3
       },
       {
         "title": "Seafood",
         "name": "Crab",
-        "price": 200000
+        "price": 200000,
+        "rating": 3
       },
       {
         "title": "Seafood",
         "name": "Octopus",
-        "price": 300000
+        "price": 300000,
+        "rating": 3
       },
       {
         "title": "Seafood",
         "name": "Squid",
-        "price": 180000
+        "price": 180000,
+        "rating": 3
       },
       {
         "title": "Seafood",
         "name": "Shrimp",
-        "price": 220000
+        "price": 220000,
+        "rating": 3
       },
       {
         "title": "Seafood",
         "name": "Snail",
-        "price": 160000
+        "price": 160000,
+        "rating": 3
       },
       {
         "title": "Meats",
         "name": "Lamb",
-        "price": 125000
+        "price": 125000,
+        "rating": 3
       },
       {
         "title": "Meats",
         "name": "Fork belly",
-        "price": 230000
+        "price": 230000,
+        "rating": 3
       },
       {
         "title": "Meats",
         "name": "Roast chicken",
         "price": 330000,
+        "rating": 3,
         "quantityType": "PACKAGE"
       },
       {
         "title": "Meats",
         "name": "Bacon",
-        "price": 120000
+        "price": 120000,
+        "rating": 3
       },
       {
         "title": "Meats",
         "name": "Sausages",
         "price": 220000,
+        "rating": 3,
         "quantityType": "PACKAGE"
       },
       {
         "title": "Meats",
         "name": "Beef",
-        "price": 160000
+        "price": 160000,
+        "rating": 3
       },
       {
         "title": "Vegetarian",
         "name": "Masala Channa",
         "price": 12000,
+        "rating": 3,
         "quantityType": "PACKAGE"
       },
       {
         "title": "Vegetarian",
         "name": "Paneer Makhani Biryani",
         "price": 20000,
+        "rating": 3,
         "quantityType": "PACKAGE"
       },
       {
         "title": "Vegetarian",
         "name": "Aamras Ki Kadhi",
         "price": 12000,
+        "rating": 3,
         "quantityType": "PACKAGE"
       },
       {
         "title": "Vegetarian",
         "name": "Dahi Kebab",
         "price": 20000,
+        "rating": 3,
         "quantityType": "PACKAGE"
       },
       {
         "title": "Vegetarian",
         "name": "Mushroom Kofta in Tomato Gravy",
         "price": 20000,
+        "rating": 3,
         "quantityType": "PACKAGE"
       },
       {
         "title": "Vegetarian",
         "name": "Stuffed Baby Eggplant",
         "price": 20000,
+        "rating": 3,
         "quantityType": "PACKAGE"
       },
       {
         "title": "Vegetarian",
         "name": "Vegetarian Khao Suey",
         "price": 20000,
+        "rating": 3,
         "quantityType": "PACKAGE"
       },
       {
         "title": "Vegetarian",
         "name": "Stuffed Masala Mushrooms",
         "price": 20000,
+        "rating": 3,
         "quantityType": "PACKAGE"
       },
       {
         "title": "Vegetarian",
         "name": "Carrot Salad with Grape Dressing",
         "price": 20000,
+        "rating": 3,
         "quantityType": "PACKAGE"
       },
       {
         "title": "Vegetarian",
         "name": "Matar Paneer Lababdaar",
         "price": 20000,
+        "rating": 3,
         "quantityType": "PACKAGE"
       },
       {
         "title": "Vegetarian",
         "name": "Gobhi Aloo",
         "price": 20000,
+        "rating": 3,
         "quantityType": "PACKAGE"
       },
       {
         "title": "Vegetarian",
         "name": "Bombay Style Aloo",
         "price": 20000,
+        "rating": 3,
         "quantityType": "PACKAGE"
       },
       {
         "title": "Vegetarian",
         "name": "Paneer Khurchan",
         "price": 20000,
+        "rating": 3,
         "quantityType": "PACKAGE"
       },
       {
         "title": "Others",
         "name": "Banh Khot",
-        "price": 12000
+        "price": 12000,
+        "rating": 3
       },
       {
         "title": "Others",
         "name": "Banh Xeo",
-        "price": 20000
+        "price": 20000,
+        "rating": 3
       }
     ]
 }
