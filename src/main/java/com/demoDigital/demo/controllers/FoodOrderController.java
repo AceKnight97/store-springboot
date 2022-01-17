@@ -2,6 +2,7 @@ package com.demoDigital.demo.controllers;
 
 import java.util.List;
 
+import com.demoDigital.demo.customModel.AddFood;
 import com.demoDigital.demo.customModel.CreateAnyCustomerOrder;
 import com.demoDigital.demo.customModel.CreateUserRequest;
 import com.demoDigital.demo.customModel.OrderHistory;
@@ -34,7 +35,15 @@ public class FoodOrderController {
 
     // GET
     @GetMapping("/history")
-    public List<OrderHistory> getHistory(@RequestHeader("Authorization") String token) {
+    public List<OrderHistory> getHistory(@RequestBody String email) {
+        // String email = addFood.getEmail();
+        System.out.println("email: " + email);
+        return foodOrderService.getHistory(email);
+    }
+
+    @GetMapping("/historywithtoken")
+    public List<OrderHistory> getHistoryWithToken(@RequestHeader("Authorization") String token) {
+        System.out.println("emaila: " + token);
         User user = authService.authUser(token);
         if (user == null || user.getEmail() == null) {
             return null;
