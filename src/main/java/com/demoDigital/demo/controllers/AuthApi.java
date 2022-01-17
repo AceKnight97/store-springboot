@@ -58,7 +58,7 @@ public class AuthApi {
             return res;
         }
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        encoder.matches(password, user.getPassword());
+        // encoder.matches(password, user.getPassword());
 
         if (email.equalsIgnoreCase(user.getEmail()) && encoder.matches(password, user.getPassword())) {
             String token = jwtTokenUtil.generateAccessToken(user);

@@ -3,17 +3,18 @@ package com.demoDigital.demo.services;
 import java.util.List;
 
 import com.demoDigital.demo.customModel.CreateUserRequest;
+import com.demoDigital.demo.customModel.Roles;
 import com.demoDigital.demo.model.User;
 import com.demoDigital.demo.repository.UserRepository;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserService {
-    ModelMapper modelMapper = new ModelMapper();
+
+    private final String adminKey = "0819541897";
 
     @Autowired
     UserRepository userRepo;
@@ -43,6 +44,14 @@ public class UserService {
         existUser.setNotes(user.getNotes());
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         existUser.setPassword(encoder.encode(user.getPassword()));
+        if (encoder.matches(adminKey, existUser.getPassword())) {
+            System.out.println("Admin's account");
+            existUser.setRole(Roles.Admin);
+        } else {
+            System.out.println("Admin's account");
+            existUser.setRole(Roles.Client);
+        }
+
         return userRepo.save(existUser);
         // System.out.println("newUser: " + user.getEmail() + " " + user.getUsername() +
         // " " + user.getPassword());
