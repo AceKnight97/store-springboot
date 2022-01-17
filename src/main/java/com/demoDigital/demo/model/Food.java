@@ -1,5 +1,7 @@
 package com.demoDigital.demo.model;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -27,6 +29,7 @@ public class Food {
     private Number rating;
     private Number price;
     private Quantity quantityType = Quantity.WEIGHT;
+    private LocalDateTime createdAt;
     @Lob
     private String image;
 
@@ -84,6 +87,14 @@ public class Food {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return this.createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 
     public Food updateModel(Food oldFood, Food newFood) {
