@@ -2,7 +2,6 @@ package com.demoDigital.demo.controllers;
 
 import java.util.List;
 
-import com.demoDigital.demo.customModel.AddFood;
 import com.demoDigital.demo.customModel.CreateAnyCustomerOrder;
 import com.demoDigital.demo.customModel.CreateUserRequest;
 import com.demoDigital.demo.customModel.OrderHistory;
@@ -15,6 +14,7 @@ import com.demoDigital.demo.services.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -34,16 +34,13 @@ public class FoodOrderController {
     UserService userService;
 
     // GET
-    @GetMapping("/history")
-    public List<OrderHistory> getHistory(@RequestBody String email) {
-        // String email = addFood.getEmail();
-        System.out.println("email: " + email);
+    @GetMapping("/history/{email}")
+    public List<OrderHistory> getHistory(@PathVariable String email) {
         return foodOrderService.getHistory(email);
     }
 
     @GetMapping("/historywithtoken")
     public List<OrderHistory> getHistoryWithToken(@RequestHeader("Authorization") String token) {
-        System.out.println("emaila: " + token);
         User user = authService.authUser(token);
         if (user == null || user.getEmail() == null) {
             return null;
