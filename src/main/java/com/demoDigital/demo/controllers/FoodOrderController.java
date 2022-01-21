@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.demoDigital.demo.customModel.CreateAnyCustomerOrder;
 import com.demoDigital.demo.customModel.CreateUserRequest;
+import com.demoDigital.demo.customModel.HistoryFilter;
 import com.demoDigital.demo.customModel.OrderHistory;
 import com.demoDigital.demo.model.FoodOrder;
 import com.demoDigital.demo.model.MutationResponse;
@@ -20,6 +21,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import io.swagger.v3.core.util.Json;
 
 @RestController
 @RequestMapping("/api/foodorder")
@@ -76,5 +79,10 @@ public class FoodOrderController {
         res.isSuccess = !(saveFood == null);
         res.data = saveFood;
         return res;
+    }
+
+    @PostMapping("/adminhistory")
+    public List<OrderHistory> getAllHistory(@RequestBody HistoryFilter filterObj) {
+        return foodOrderService.getAllHistory(filterObj);
     }
 }

@@ -1,9 +1,11 @@
 package com.demoDigital.demo.customModel;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import com.demoDigital.demo.model.Food;
 import com.demoDigital.demo.model.FoodOrder;
+import com.demoDigital.demo.model.User;
 
 import lombok.Data;
 
@@ -19,6 +21,13 @@ public class OrderHistory {
     private Number rating;
     private Number price;
     private Quantity quantityType = Quantity.WEIGHT;
+    private String username;
+    private String phone;
+    private String address;
+    private Gender gender;
+    private LocalDate dob;
+    private Roles role;
+    private String notes;
 
     public Long getFood_id() {
         return this.food_id;
@@ -92,17 +101,92 @@ public class OrderHistory {
         this.quantityType = quantityType;
     }
 
-    public void updateModel(OrderHistory current, FoodOrder foodOrder, Food food) {
+    public String getUsername() {
+        return this.username;
+    }
 
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPhone() {
+        return this.phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getAddress() {
+        return this.address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public Gender getGender() {
+        return this.gender;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
+
+    public LocalDate getDob() {
+        return this.dob;
+    }
+
+    public void setDob(LocalDate dob) {
+        this.dob = dob;
+    }
+
+    public Roles getRole() {
+        return this.role;
+    }
+
+    public void setRole(Roles role) {
+        this.role = role;
+    }
+
+    public String getNotes() {
+        return this.notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
+
+    public void updateModel(OrderHistory current, FoodOrder foodOrder, Food food) {
         current.setFood_id(foodOrder.getFood_id());
         current.setQuantity(foodOrder.getQuantity());
         current.setCreatedAt(foodOrder.getCreatedAt());
         current.setEmail(foodOrder.getEmail());
+
+        current.setName(food.getName());
+        current.setTitle(food.getTitle());
+        current.setRating(food.getRating());
+        current.setPrice(food.getPrice());
+        current.setQuantityType(food.getQuantityType());
+    }
+
+    public void updateModelUser(OrderHistory current, FoodOrder foodOrder, Food food, User user) {
+        current.setFood_id(foodOrder.getFood_id());
+        current.setQuantity(foodOrder.getQuantity());
+        current.setCreatedAt(foodOrder.getCreatedAt());
+        current.setEmail(foodOrder.getEmail());
+
         current.setName(food.getName());
         current.setTitle(food.getTitle());
         current.setRating(food.getRating());
         current.setPrice(food.getPrice());
         current.setQuantityType(food.getQuantityType());
 
+        current.setPhone(user.getPhone());
+        current.setAddress(user.getAddress());
+        current.setGender(user.getGender());
+        current.setDob(user.getDob());
+        current.setUsername(user.getUsername());
     }
+
 }
