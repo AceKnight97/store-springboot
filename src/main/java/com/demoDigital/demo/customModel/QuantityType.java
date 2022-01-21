@@ -1,6 +1,6 @@
 package com.demoDigital.demo.customModel;
 
-public enum Quantity {
+public enum QuantityType {
     WEIGHT,
     PACKAGE,
 }

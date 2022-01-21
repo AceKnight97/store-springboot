@@ -20,7 +20,6 @@ public class OrderHistory {
     private String name;
     private Number rating;
     private Number price;
-    private Quantity quantityType = Quantity.WEIGHT;
     private String username;
     private String phone;
     private String address;
@@ -28,6 +27,7 @@ public class OrderHistory {
     private LocalDate dob;
     private Roles role;
     private String notes;
+    private QuantityType quantityType = QuantityType.WEIGHT;
 
     public Long getFood_id() {
         return this.food_id;
@@ -93,11 +93,11 @@ public class OrderHistory {
         this.price = price;
     }
 
-    public Quantity getQuantityType() {
+    public QuantityType getQuantityType() {
         return this.quantityType;
     }
 
-    public void setQuantityType(Quantity quantityType) {
+    public void setQuantityType(QuantityType quantityType) {
         this.quantityType = quantityType;
     }
 

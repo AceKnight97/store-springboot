@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
 
-import com.demoDigital.demo.customModel.Quantity;
+import com.demoDigital.demo.customModel.QuantityType;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,7 +28,7 @@ public class Food {
     private String name;
     private Number rating;
     private Number price;
-    private Quantity quantityType = Quantity.WEIGHT;
+    private QuantityType quantityType = QuantityType.WEIGHT;
     private LocalDateTime createdAt;
     @Lob
     private String image;
@@ -65,11 +65,11 @@ public class Food {
         this.price = price;
     }
 
-    public Quantity getQuantityType() {
+    public QuantityType getQuantityType() {
         return this.quantityType;
     }
 
-    public void setQuantityType(Quantity quantityType) {
+    public void setQuantityType(QuantityType quantityType) {
         this.quantityType = quantityType;
     }
 
