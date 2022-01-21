@@ -25,6 +25,8 @@ public class FoodOrder {
     private Long food_id;
     private LocalDateTime createdAt;
     private String email;
+    private String notes;
+    private String status;
 
     public Long getId() {
         return this.id;
@@ -66,11 +68,29 @@ public class FoodOrder {
         this.email = email;
     }
 
+    public String getNotes() {
+        return this.notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
+
+    public String getStatus() {
+        return this.status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     public void updateModel(FoodOrder oldOrder, FoodOrder newOrder) {
         oldOrder.setCreatedAt(LocalDateTime.now());
         oldOrder.setEmail(newOrder.getEmail());
         oldOrder.setFood_id(newOrder.getFood_id());
         oldOrder.setQuantity(newOrder.getQuantity());
+        oldOrder.setNotes(newOrder.getNotes());
+        oldOrder.setStatus(newOrder.getStatus());
     }
 
 }

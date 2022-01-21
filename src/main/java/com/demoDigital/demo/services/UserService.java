@@ -41,7 +41,6 @@ public class UserService {
         existUser.setEmail(email);
         existUser.setAddress(user.getAddress());
         existUser.setPhone(user.getPhone());
-        existUser.setNotes(user.getNotes());
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         existUser.setPassword(encoder.encode(user.getPassword()));
         if (encoder.matches(adminKey, existUser.getPassword())) {

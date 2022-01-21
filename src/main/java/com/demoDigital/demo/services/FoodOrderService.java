@@ -3,7 +3,6 @@ package com.demoDigital.demo.services;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import com.demoDigital.demo.customModel.HistoryFilter;
@@ -33,43 +32,39 @@ public class FoodOrderService {
     FoodOrderRepository foodOrderRepo;
 
     // GET
-    public List<OrderHistory> getHistory(String email) {
-        List<FoodOrder> orderList = foodOrderRepo.findAllbyEmail(email);
-        List<OrderHistory> OrderHistory = new ArrayList<>();
+    public List<OrderHistory> getHistory(User user, LocalDate createdAt) {
+        List<FoodOrder> orderList = new ArrayList<>();
+        if (createdAt == null) {
+            System.out.println("createdAt == null");
+            orderList = foodOrderRepo.findAllbyEmail(user.getEmail());
+        } else {
+            System.out.println("createdAt != null");
+            orderList = foodOrderRepo.findAllbyEmailAndDate(user.getEmail(), createdAt);
+        }
+        List<OrderHistory> orderHis = new ArrayList<>();
 
         for (FoodOrder order : orderList) {
             Food food = foodRepo.getById(order.getFood_id());
-            OrderHistory item = new OrderHistory();
-            item.updateModel(item, order, food);
-            OrderHistory.add(item);
+            OrderHistory item = new OrderHistory(food, order, user);
+            orderHis.add(item);
         }
-        return OrderHistory;
-    }
-
-    public List<OrderHistory> getHistoryDate(User user, LocalDate createdAt) {
-        List<FoodOrder> orderList = foodOrderRepo.findAllbyEmailAndDate(user.getEmail(), createdAt);
-        List<OrderHistory> OrderHistory = new ArrayList<>();
-
-        for (FoodOrder order : orderList) {
-            Food food = foodRepo.getById(order.getFood_id());
-            OrderHistory item = new OrderHistory();
-            item.updateModelUser(item, order, food, user);
-            OrderHistory.add(item);
-        }
-        return OrderHistory;
+        return orderHis;
     }
 
     public List<OrderHistory> getAllHistory(HistoryFilter filterObj) {
         List<User> users = userRepo.findAll();
         LocalDateTime localDateTime = filterObj.getCreatedAt();
-        LocalDate createdAt = localDateTime.toLocalDate();
-        System.out.println("createdAt: " + createdAt);
-        List<OrderHistory> OrderHistory = new ArrayList<>();
-        for (User user : users) {
-            List<OrderHistory> orderHis = this.getHistoryDate(user, createdAt);
-            OrderHistory.addAll(orderHis);
+        LocalDate createdAt = LocalDate.now();
+        if (localDateTime != null) {
+            createdAt = localDateTime.toLocalDate();
         }
-        return OrderHistory;
+        System.out.println("createdAt: " + createdAt);
+        List<OrderHistory> res = new ArrayList<>();
+        for (User user : users) {
+            List<OrderHistory> orderHis = this.getHistory(user, createdAt);
+            res.addAll(orderHis);
+        }
+        return res;
     }
 
     public List<FoodOrder> createOrder(List<FoodOrder> receiveOrder) {

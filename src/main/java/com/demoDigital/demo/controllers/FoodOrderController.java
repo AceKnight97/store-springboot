@@ -9,6 +9,7 @@ import com.demoDigital.demo.customModel.OrderHistory;
 import com.demoDigital.demo.model.FoodOrder;
 import com.demoDigital.demo.model.MutationResponse;
 import com.demoDigital.demo.model.User;
+import com.demoDigital.demo.repository.UserRepository;
 import com.demoDigital.demo.services.AuthService;
 import com.demoDigital.demo.services.FoodOrderService;
 import com.demoDigital.demo.services.UserService;
@@ -36,10 +37,17 @@ public class FoodOrderController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    UserRepository userRepo;
+
     // GET
     @GetMapping("/history/{email}")
     public List<OrderHistory> getHistory(@PathVariable String email) {
-        return foodOrderService.getHistory(email);
+        User user = userRepo.findByEmail(email);
+        if (user == null) {
+            return null;
+        }
+        return foodOrderService.getHistory(user, null);
     }
 
     @GetMapping("/historywithtoken")
@@ -48,7 +56,7 @@ public class FoodOrderController {
         if (user == null || user.getEmail() == null) {
             return null;
         }
-        return foodOrderService.getHistory(user.getEmail());
+        return foodOrderService.getHistory(user, null);
     }
 
     // POST
@@ -64,9 +72,6 @@ public class FoodOrderController {
 
     @PostMapping("/createanycustomerorder")
     public MutationResponse createAnyCustomerOrder(@RequestBody CreateAnyCustomerOrder data) {
-        // @RequestBody List<FoodOrder> receiveOrder,
-        // @RequestBody CreateUserRequest anyCustomer
-        System.out.println("createAnyCustomerOrder");
         List<FoodOrder> receiveOrder = data.getFood();
         CreateUserRequest anyCustomer = data.getCustomer();
         MutationResponse res = new MutationResponse();

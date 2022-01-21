@@ -1,13 +1,6 @@
 package com.demoDigital.demo.customModel;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-
-import com.demoDigital.demo.model.Food;
-
-import org.hibernate.mapping.Any;
 
 import lombok.Data;
 
@@ -22,7 +15,7 @@ public class HistoryFilter {
     private String name;
     private Number rating;
     private Number price;
-    private Quantity quantityType = Quantity.WEIGHT;
+    private QuantityType quantityType = QuantityType.WEIGHT;
 
     public String getEmail() {
         return this.email;
@@ -88,11 +81,11 @@ public class HistoryFilter {
         this.price = price;
     }
 
-    public Quantity getQuantityType() {
+    public QuantityType getQuantityType() {
         return this.quantityType;
     }
 
-    public void setQuantityType(Quantity quantityType) {
+    public void setQuantityType(QuantityType quantityType) {
         this.quantityType = quantityType;
     }
 

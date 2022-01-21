@@ -35,7 +35,6 @@ public class User {
     private LocalDate dob;
     private String username;
     private Roles role;
-    private String notes;
 
     @JsonIgnore
     private String password;
@@ -119,14 +118,6 @@ public class User {
 
     public void setRole(Roles role) {
         this.role = role;
-    }
-
-    public String getNotes() {
-        return this.notes;
-    }
-
-    public void setNotes(String notes) {
-        this.notes = notes;
     }
 
 }
