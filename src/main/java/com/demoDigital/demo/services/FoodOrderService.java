@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.demoDigital.demo.customModel.HistoryFilter;
 import com.demoDigital.demo.customModel.OrderHistory;
+import com.demoDigital.demo.customModel.UpdateOrderStatus;
 import com.demoDigital.demo.model.Food;
 import com.demoDigital.demo.model.FoodOrder;
 import com.demoDigital.demo.model.User;
@@ -105,6 +106,18 @@ public class FoodOrderService {
             }
             // Iterable<Food> resultId = foodRepo.findAllById(listId);
             return listFood;
+        } catch (Exception e) {
+            // TODO: handle exception
+            return null;
+        }
+    }
+
+    public FoodOrder changeOrderStatus(UpdateOrderStatus data) {
+        try {
+            FoodOrder foodOrder = foodOrderRepo.findById(data.getFood_id()).get();
+            foodOrder.setStatus(data.getStatus());
+            foodOrderRepo.save(foodOrder);
+            return foodOrder;
         } catch (Exception e) {
             // TODO: handle exception
             return null;

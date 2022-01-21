@@ -6,6 +6,7 @@ import com.demoDigital.demo.customModel.CreateAnyCustomerOrder;
 import com.demoDigital.demo.customModel.CreateUserRequest;
 import com.demoDigital.demo.customModel.HistoryFilter;
 import com.demoDigital.demo.customModel.OrderHistory;
+import com.demoDigital.demo.customModel.UpdateOrderStatus;
 import com.demoDigital.demo.model.FoodOrder;
 import com.demoDigital.demo.model.MutationResponse;
 import com.demoDigital.demo.model.User;
@@ -18,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -89,5 +91,15 @@ public class FoodOrderController {
     @PostMapping("/adminhistory")
     public List<OrderHistory> getAllHistory(@RequestBody HistoryFilter filterObj) {
         return foodOrderService.getAllHistory(filterObj);
+    }
+
+    // PUT
+    @PutMapping("/changeorderstatus")
+    public MutationResponse changeOrderStatus(@RequestBody UpdateOrderStatus data) {
+        MutationResponse res = new MutationResponse();
+        FoodOrder foodOrder = foodOrderService.changeOrderStatus(data);
+        res.isSuccess = !(foodOrder == null);
+        res.data = foodOrder;
+        return res;
     }
 }
