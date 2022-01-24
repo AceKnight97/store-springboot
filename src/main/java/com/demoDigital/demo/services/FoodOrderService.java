@@ -53,7 +53,6 @@ public class FoodOrderService {
     }
 
     public List<OrderHistory> getAllHistory(HistoryFilter filterObj) {
-        List<User> users = userRepo.findAll();
         LocalDateTime localDateTime = filterObj.getCreatedAt();
         LocalDate createdAt = LocalDate.now();
         if (localDateTime != null) {
@@ -61,6 +60,14 @@ public class FoodOrderService {
         }
         System.out.println("createdAt: " + createdAt);
         List<OrderHistory> res = new ArrayList<>();
+        String email = filterObj.getEmail();
+        if (email != null) {
+            User user = userRepo.findByEmail(email);
+            List<OrderHistory> orderHis = this.getHistory(user, createdAt);
+            res.addAll(orderHis);
+            return res;
+        }
+        List<User> users = userRepo.findAll();
         for (User user : users) {
             List<OrderHistory> orderHis = this.getHistory(user, createdAt);
             res.addAll(orderHis);
