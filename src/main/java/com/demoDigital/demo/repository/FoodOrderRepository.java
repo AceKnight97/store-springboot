@@ -1,10 +1,8 @@
 package com.demoDigital.demo.repository;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
-import com.demoDigital.demo.model.Food;
 import com.demoDigital.demo.model.FoodOrder;
 
 import org.springframework.data.jpa.repository.JpaRepository;

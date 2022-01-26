@@ -27,6 +27,7 @@ public class FoodOrder {
     private String email;
     private String notes;
     private String status;
+    private Number price;
 
     public Long getId() {
         return this.id;
@@ -84,6 +85,14 @@ public class FoodOrder {
         this.status = status;
     }
 
+    public Number getPrice() {
+        return this.price;
+    }
+
+    public void setPrice(Number price) {
+        this.price = price;
+    }
+
     public void updateModel(FoodOrder oldOrder, FoodOrder newOrder) {
         oldOrder.setCreatedAt(LocalDateTime.now());
         oldOrder.setEmail(newOrder.getEmail());
@@ -91,6 +100,7 @@ public class FoodOrder {
         oldOrder.setQuantity(newOrder.getQuantity());
         oldOrder.setNotes(newOrder.getNotes());
         oldOrder.setStatus(newOrder.getStatus());
+        oldOrder.setPrice(newOrder.getPrice());
     }
 
 }
